@@ -7,7 +7,7 @@ To not forget...
 ### Screens
 - [x] Screen Login;
 - [x] Screen Create Account;
-- [ ] Screen Change my Account;
+- [x] Screen Change my Account;
 - [ ] Screen Welcome;
 - [ ] Screen Admin See EveryOne;
 
