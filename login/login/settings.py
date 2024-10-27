@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'app_login',
     'app_create_account',
     'app_change_account',
+    'app_welcome',
 ]
 
 MIDDLEWARE = [
