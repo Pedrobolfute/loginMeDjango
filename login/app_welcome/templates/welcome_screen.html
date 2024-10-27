@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'app_welcome/css/welcome_screen_global.css' %}">
+  <link rel="shortcut icon" href="{% static 'app_welcome/img/' %}">
+  <script src="{% static 'app_welcome/js/welcome_screen_component_header-simple.js' %}" defer></script>
+  <title>Component Header</title>
+</head>
+
+<body>
+  <header-simple logo="{% static 'app_welcome/img/cozinharteLogoResized.png'%}" message="A arte de cozinhar!" itemName0="Inicio"
+    itemImage0="{% static 'app_welcome/img/svg/home.svg'%}" itemSrc0="#" itemName1="Produtos" itemImage1="{% static 'app_welcome/img/svg/menu.svg'%}"
+    itemSrc1="#" itemName2="Sobre" itemImage2="{% static 'app_welcome/img/svg/about.svg'%}" itemSrc2="#" itemName3="Avaliação"
+    itemImage3="{% static 'app_welcome/img/svg/feedback.svg'%}" itemSrc3="#">
+  </header-simple>
+
+  <card-carousel
+  myColor=""
+  img0="{% static 'app_welcome/img/cozinharteLogo.png' %}"
+  img1="{% static 'app_welcome/img/cozinharteLogoResized.png'%}"
+  ></card-carousel>
+</body>
+
+</html>

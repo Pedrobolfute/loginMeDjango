@@ -8,7 +8,7 @@ To not forget...
 - [x] Screen Login;
 - [x] Screen Create Account;
 - [x] Screen Change my Account;
-- [ ] Screen Welcome;
+- [x] Screen Welcome;
 - [ ] Screen Admin See EveryOne;
 
 ### Function or Methods
