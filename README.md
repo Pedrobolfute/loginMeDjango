@@ -9,7 +9,7 @@ To not forget...
 - [x] Screen Create Account;
 - [x] Screen Change my Account;
 - [x] Screen Welcome;
-- [ ] Screen Admin See EveryOne;
+- [x] Screen Admin See EveryOne;
 
 ### Function or Methods
 >> Screen login, create account, change myAccount:

@@ -7,4 +7,5 @@ urlpatterns = [
     path('register/', include('app_create_account.urls')),
     path('change/', include('app_change_account.urls')), #Mudar para formulario
     path('welcome/', include('app_welcome.urls')),
+    path('administrator/', include('app_admin.urls')),
 ]

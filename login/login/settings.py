@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'app_create_account',
     'app_change_account',
     'app_welcome',
+    'app_admin',
 ]
 
 MIDDLEWARE = [
