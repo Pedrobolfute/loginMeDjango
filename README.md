@@ -62,3 +62,33 @@ XX = Made and implemented;
 
 >> Paleta de cores:
 - [paletton](https://paletton.com/#uid=33q160kJ+jCvZsNCBnOQDeQWv8W)
+
+## classes e seus métodos
+
+The user contains his life, likes his animal, vehicle, job, document
+
+class user
+    - id
+    - name
+    - password
+
+class animal
+    - specie
+    - color
+
+    - def makeNoise
+
+class vehicle
+    - mark
+    - model
+    - year
+    - color
+
+class job
+    - company
+    - position
+    - salary
+
+class documento
+    - type
+    - number

@@ -13,3 +13,5 @@ def loginMe(request):
             return HttpResponse('Usuário: ' + user_name + ' , Senha: ' + user_pass)
         else:
             return HttpResponse("Error! Try again!")
+        
+
