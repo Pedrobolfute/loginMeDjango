@@ -64,6 +64,7 @@ main{
     width: 500px;
 
     border: #333 solid;
+    overflow-x: auto;
 
     display: flex;
     flex-direction: column;
@@ -87,9 +88,11 @@ main{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    width: 11.5rem;
+    max-width: 11.5rem;
 }
 
-.login_area .login form span{
+.login_area .login form .credential_info span{
     display: flex;
     justify-content: center;
 }
@@ -110,7 +113,43 @@ main{
     width: 100%;
     border: #474200 solid 0.25rem;
     background-color: #474200;
+    margin-bottom: 2rem;
 }
+
+.more_info{
+    margin-top: 1rem;
+    width: 11rem;
+    max-width: 11rem;
+    height: 100%;
+}
+
+.more_info .info *{
+    text-align: left;
+    color: black;
+    font-weight: 900;
+}
+
+.more_info .info{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type='number']{
+    margin-top: 0.5rem;
+    width: 11.25rem;
+}
+
+.quest_label{
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+.more_info .hidden{
+    width: 11.75rem;
+}
+
+
+
 
 /* Footer */
 footer{
@@ -126,7 +165,6 @@ footer{
     font-size: 0.75rem;
     font-weight: 500;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    
 }
 
 @media screen and (min-width: 425px) {
@@ -139,7 +177,7 @@ footer{
 
     }
 
-    .login_area .login form input[type="text"]{
+    .login_area .login form .credential_info .more_info input[type="text"]{
         margin-top: 1rem;
         width: 100%;
     }
@@ -156,7 +194,7 @@ footer{
         font-size: 1.75rem;
     }
     
-    .login_area .login form input[type="text"]{
+    .login_area .login form .credential_info input[type="text"]{
         margin-top: 1.5rem;
         width: 100%;
     }
