@@ -89,6 +89,18 @@ class job
     - position
     - salary
 
-class documento
+class document
     - type
     - number
+
+
+# REMEMBERING
+
+git add do bd
+> python manage.py makemigrations
+
+git commit do bd
+> python manege.py migrate
+
+add user to server
+> python manage.py createsuperuser

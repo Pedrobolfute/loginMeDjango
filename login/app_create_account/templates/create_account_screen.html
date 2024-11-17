@@ -25,7 +25,7 @@
             <div class="login_area">
                 <div class="login_title">Register</div>
                 <div class="login">
-                    <form action="{% url 'register' %}" name="login_credentials" method="POST">{% csrf_token %}
+                    <form class="register_form" action="{% url 'register' %}" name="login_credentials" method="POST">{% csrf_token %}
                         <div class="credential_info">
                             <span class="name">
                                 <input type="text" placeholder="Nome" name="user_name">
@@ -100,11 +100,11 @@
                                 </div>
                                 <div class="document hidden" hidden>
                                     <span class="document_type">
-                                        <input id="cpf_id" type="checkbox" placeholder="CPF" name="my_cpf_type">
+                                        <input id="cpf_id" type="checkbox" placeholder="CPF" name="my_document_type">
                                         <label for="cpf_id"> CPF</label>
                                     </span>
                                     <span class="document_number">
-                                        <input type="number" placeholder="CPF NUMBER" name="my_cpf_number">
+                                        <input type="number" placeholder="CPF NUMBER" name="my_document_number">
                                     </span>
                                 </div>
                             </span>
