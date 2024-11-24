@@ -1,4 +1,4 @@
-from django.shortcuts import render 
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from app_create_account.models import User
 
@@ -10,14 +10,18 @@ def loginMe(request):
     elif request.method == "POST":
         user_name = request.POST.get('user_name')
         user_pass = request.POST.get('user_pass')
-        db_user_name = User.objects.filter(name_user=user_name)
-        db_user_pass = User.objects.filter(password_user=user_pass)
 
         if user_name and user_pass != '':
-            if db_user_name and db_user_pass:
-                return JsonResponse({"message": f"Bem vindo, {user_name}", "status":"success"})
-            else:
-                return JsonResponse({"message": "credenciais inválidas!", "status":"invalid"})
+            try:
+                db_user_name = User.objects.get(name_user=user_name)
+                db_user_pass = db_user_name.password_user
+                if str(db_user_name) == str(user_name) and str(db_user_pass) == str(user_pass):
+                    
+                    return JsonResponse({'message': f'Bem vindo {user_name}!', 'status':'success'})
+                # Proxima tela...
+                else:
+                    return JsonResponse({"message": "*credenciais inválidas!", "status":"invalid"})
+            except User.DoesNotExist:
+                return JsonResponse({"message": "*Usuário não existe!", "status":"invalid"})
         else:
-            return JsonResponse({"message":"Preencha todos os campos!", "status":"empty"})
-        
+            return JsonResponse({"message":"*Preencha todos os campos!", "status":"empty"})

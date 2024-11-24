@@ -7,4 +7,4 @@ def welcome(request):
     if request.method == "GET":
         return render(request, 'welcome_screen.html')
     else:
-        return HttpResponse('request')
+        return HttpResponse('Error getting welcome page')
