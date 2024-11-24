@@ -62,8 +62,9 @@ main{
     max-height: 60%;
     height: 500px;
     width: 500px;
-
+    
     border: #333 solid;
+    overflow-x: auto;
 
     display: flex;
     flex-direction: column;
