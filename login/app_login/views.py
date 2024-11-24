@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
+from app_create_account.models import User
 
 # Create your views here.
 
@@ -9,9 +10,18 @@ def loginMe(request):
     elif request.method == "POST":
         user_name = request.POST.get('user_name')
         user_pass = request.POST.get('user_pass')
-        if user_name and user_pass != '':
-            return HttpResponse('Usuário: ' + user_name + ' , Senha: ' + user_pass)
-        else:
-            return HttpResponse("Error! Try again!")
-        
 
+        if user_name and user_pass != '':
+            try:
+                db_user_name = User.objects.get(name_user=user_name)
+                db_user_pass = db_user_name.password_user
+                if str(db_user_name) == str(user_name) and str(db_user_pass) == str(user_pass):
+                    
+                    return JsonResponse({'message': f'Bem vindo {user_name}!', 'status':'success'})
+                # Proxima tela...
+                else:
+                    return JsonResponse({"message": "*credenciais inválidas!", "status":"invalid"})
+            except User.DoesNotExist:
+                return JsonResponse({"message": "*Usuário não existe!", "status":"invalid"})
+        else:
+            return JsonResponse({"message":"*Preencha todos os campos!", "status":"empty"})

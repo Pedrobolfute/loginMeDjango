@@ -2,16 +2,16 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     e.preventDefault()
     const formData = new FormData(this)
     try{
-        const response = await fetch('/login/', {
+        const response = await fetch('/change/', {
             method: 'POST',
             body: formData,
         })
         const data = await response.json()
         if(data.status === 'success'){
-            window.location.href = '/welcome/'
+            window.location.href = '/login/'
         } else if(data.status === 'invalid') {
             alert(data.message)
-            window.location.href = '/login/'
+            window.location.href = '/change/'
         }else if(data.status === 'empty'){
             alert(data.message)
         }
@@ -20,4 +20,5 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     }
 }
 )
-console.log('login_screen.js')
+
+console.log('opa')
