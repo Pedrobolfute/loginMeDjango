@@ -17,9 +17,9 @@ To not forget...
 - [ ] Little eye to see my password when I click;
 
 >> Screen login and Change my Account:
-- [ ] Method that confirm if my passwors is right;
-- [ ] Method that allows me edit my info;
-- [ ] Placeholder brings my name from DB;
+- [x] Method that confirm if my passwors is right;
+- [x] Method that allows me edit my info (password);
+- [x] Placeholder brings my name from DB;
 
 >> Screen create account;
 - [ ] Password validade if weak, normal or strong;
@@ -33,8 +33,8 @@ To not forget...
 - [ ] Colums: id, name, password encripted, password normal;
 
 >> Screen change my account
-- [ ] method that confirm if my passwors is right
-- [ ] method that confirm if my password is right 
+- [x] method that confirm if my user is right
+- [x] method that confirm if my password is right 
 
 ### Convencions
 >> TO-DO:
