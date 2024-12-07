@@ -28,22 +28,25 @@ def registerMe(request):
             if user_pass != user_confirm_pass:
                 return JsonResponse({"message": "Senhas não coincidem!", "status": "ok"})
             else:
-                user = User(name_user=user_name, password_user=user_pass)
-                user.save()
+                if User.objects.filter(name_user=user_name).exists():
+                    return JsonResponse({"message": "Usuário já existe", "status": "exist"})
+                else:
+                    user = User(name_user=user_name, password_user=user_pass)
+                    user.save()
 
-                animal = Animal(specie_animal=user_animal, color_animal=user_animal_color, owner=user)
-                animal.save()
-
-                vehicle = Vehicle(mark_vehicle=user_vehicle, model_vehicle=user_vehicle_model, year_vehicle=user_vehicle_year, color_vehicle=user_vehicle_color, owner=user)
-                vehicle.save()
-
-                job = Job(company_job=user_job, position_job=user_job_position, salary_job=user_job_salary, owner=user)
-                job.save()
-
-                document = Document(type_document=user_document, number_document=user_document_number, owner=user)
-                document.save()
-
-                return JsonResponse({"message": f"Usuário {user_name} criado com sucesso!", "status": "created"})
+                    animal = Animal(specie_animal=user_animal, color_animal=user_animal_color, owner=user)
+                    animal.save()
+    
+                    vehicle = Vehicle(mark_vehicle=user_vehicle, model_vehicle=user_vehicle_model, year_vehicle=user_vehicle_year, color_vehicle=user_vehicle_color, owner=user)
+                    vehicle.save()
+    
+                    job = Job(company_job=user_job, position_job=user_job_position, salary_job=user_job_salary, owner=user)
+                    job.save()
+    
+                    document = Document(type_document=user_document, number_document=user_document_number, owner=user)
+                    document.save()
+    
+                    return JsonResponse({"message": f"Usuário {user_name} criado com sucesso!", "status": "created"})
         else:
             return JsonResponse({"message": "Preencha campos de Login, senha e confirmação da senha", "status": "ok"})
 
