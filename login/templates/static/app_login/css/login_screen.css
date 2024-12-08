@@ -64,6 +64,7 @@ main{
     width: 500px;
 
     border: #333 solid;
+    overflow-y: auto;
 
     display: flex;
     flex-direction: column;
@@ -103,13 +104,29 @@ main{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.login_area input[type="submit"]{
+.login_area .submit{
+    display: flex;
+    flex-direction: column;
+}
+
+.login_area .submit .send{
     margin-top: 1rem;
     color: rgb(255, 255, 255);
     height: 35px;
     width: 100%;
     border: #474200 solid 0.25rem;
     background-color: #474200;
+}
+
+.login_area .submit .create{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: rgb(255, 255, 255);
+    height: 20x;
+    width: 100%;
+    border: #474200 solid 0.1rem;
+    background-color: #474200;
+    font-size: 0.75rem;
 }
 
 /* Footer */
