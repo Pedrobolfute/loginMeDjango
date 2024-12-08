@@ -23,24 +23,12 @@ class Animal(models.Model):
         self.color_animal = "None"
         self.save()
 
-
-class Vehicle(models.Model):
-    mark_vehicle = models.CharField(max_length=50, blank=True, null=True)
-    model_vehicle = models.CharField(max_length=50, blank=True, null=True)
-    year_vehicle = models.IntegerField(blank=True, null=True)
-    color_vehicle = models.CharField(max_length=50, blank=True, null=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='vehicle')
+class AnimalFood(models.Model):
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='foods')
+    food_name = models.CharField(max_length=50)
 
     def __str__(self) -> str:
-        return self.model_vehicle if self.model_vehicle else "None"
-    
-    def delete(self, using=None, keep_parents=False):
-      self.mark_vehicle = "None"
-      self.model_vehicle = "None"
-      self.year_vehicle = 0  #CAMPO NUMÉRICO
-      self.color_vehicle = "None"
-      self.save()
-
+        return f"{self.food_name} ({self.animal.specie_animal})"
 
 class Job(models.Model):
     company_job = models.CharField(max_length=50, blank=True, null=True)

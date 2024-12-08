@@ -5,7 +5,7 @@ from .models import *
 
 admin.site.register(User)
 admin.site.register(Animal)
-admin.site.register(Vehicle)
+admin.site.register(AnimalFood)
 admin.site.register(Job)
 admin.site.register(Document)
 

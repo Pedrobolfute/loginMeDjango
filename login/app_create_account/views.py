@@ -12,12 +12,6 @@ def registerMe(request):
         user_name = request.POST.get('user_name')
         user_pass = request.POST.get('user_pass')
         user_confirm_pass = request.POST.get('user_confirm_pass')
-        user_animal = request.POST.get('my_animal') or None
-        user_animal_color = request.POST.get('my_animal_color') or None
-        user_vehicle = request.POST.get('my_vehicle_mark') or None
-        user_vehicle_model = request.POST.get('my_vehicle_model') or None
-        user_vehicle_year = request.POST.get('my_vehicle_year') or None
-        user_vehicle_color = request.POST.get('my_vehicle_color') or None
         user_job = request.POST.get('my_job') or None
         user_job_position = request.POST.get('my_job_position') or None
         user_job_salary = request.POST.get('my_job_salary') or None
@@ -33,12 +27,6 @@ def registerMe(request):
                 else:
                     user = User(name_user=user_name, password_user=user_pass)
                     user.save()
-
-                    animal = Animal(specie_animal=user_animal, color_animal=user_animal_color, owner=user)
-                    animal.save()
-    
-                    vehicle = Vehicle(mark_vehicle=user_vehicle, model_vehicle=user_vehicle_model, year_vehicle=user_vehicle_year, color_vehicle=user_vehicle_color, owner=user)
-                    vehicle.save()
     
                     job = Job(company_job=user_job, position_job=user_job_position, salary_job=user_job_salary, owner=user)
                     job.save()
