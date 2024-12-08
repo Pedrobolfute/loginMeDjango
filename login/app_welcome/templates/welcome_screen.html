@@ -24,49 +24,31 @@
   <title>Fazenda</title>
 </head>
 <body>
+
+  <header class="header">
+    <h1>Bem-vindo à Fazenda</h1>
+    <div class="animal-count">
+        <ul>
+            {% for specie, count in species_totals.items %}
+                <li>{{ specie|capfirst }}: {{ count }}</li>
+            {% empty %}
+                <li>Nenhum animal cadastrado</li>
+            {% endfor %}
+        </ul>
+    </div>
+</header>
+
   <section class="content">
     <h1>Animais</h1>
 
     <ol class="animals">
-      <!-- Formulário para adicionar animal -->
-      <li class="animal add">
-        <span class="number">#000</span>
-        <span class="name">Adicionar</span>
-
-        <div class="detail">
-          <ol class="types">
-            <li class="type">tipo 1</li>
-            <li class="type">tipo 2</li>
-          </ol>
-
-          <img src="{% static 'app_welcome/img/svg/add.svg' %}" alt="Adicionar Animal">
-        </div>
-
-        <form class="animal-form" action="{% url 'welcome' %}" method="POST" name="login_credentials" style="display: none;">
-          {% csrf_token %}
-          <label for="animal-select">Escolha o animal:</label>
-          <select id="animal-select" name="animal">
-            <option value="boi">Boi</option>
-            <option value="vaca">Vaca</option>
-            <option value="cavalo">Cavalo</option>
-            <option value="porco">Porco</option>
-            <option value="galinha">Galinha</option>
-            <option value="peixe">Peixe</option>
-          </select>
-      
-          <label for="animal-color">Cor do animal:</label>
-          <input type="text" id="animal-color" name="color" placeholder="Digite a cor do animal">
-      
-          <button type="submit">Adicionar</button>
-        </form>
-      </li>
-
+      {% if animals %}
       <!-- Iterar sobre os animais no contexto -->
       {% for animal in animals %}
       <li class="animal">
         <span class="number">#{{ forloop.counter|default:0 }}</span>
         <span class="name">{{ animal.specie_animal|capfirst }}</span>
-
+    
         <div class="detail">
           <ol class="types">
             {% for food in animal.foods.all %}
@@ -75,7 +57,7 @@
             <li class="type">Sem alimentos cadastrados</li>
             {% endfor %}
           </ol>
-
+    
           <!-- Imagem fictícia baseada na espécie do animal -->
           <img src="{% static 'app_welcome/img/svg/' %}{{ animal.specie_animal }}.svg" 
           alt="{{ animal.specie_animal|capfirst }}">
@@ -86,7 +68,44 @@
         <span class="name">Nenhum animal cadastrado</span>
       </li>
       {% endfor %}
+      {% else %}
+    
+  {% endif %}
+    
+      <!-- Formulário para adicionar animal -->
+      <li class="animal add">
+        <span class="number">#000</span>
+        <span class="name">Adicionar</span>
+    
+        <div class="detail">
+          <ol class="types">
+            <li class="type">tipo 1</li>
+            <li class="type">tipo 2</li>
+          </ol>
+    
+          <img src="{% static 'app_welcome/img/svg/add.svg' %}" alt="Adicionar Animal">
+        </div>
+    
+        <form class="animal-form" action="{% url 'welcome' %}" method="POST" name="login_credentials" style="display: none;" data-img-base="{% static 'app_welcome/img/svg/' %}">
+          {% csrf_token %}
+          <label for="animal-select">Escolha o animal:</label>
+          <select id="animal-select" name="animal">
+            <option value="boi">Boi</option>
+            <option value="vaca">Vaca</option>
+            <option value="cavalo">Cavalo</option>
+            <option value="porco">Porco</option>
+            <option value="galinha">Galinha</option>
+            <option value="peixe">Peixe</option>
+          </select>
+    
+          <label for="animal-color">Cor do animal:</label>
+          <input type="text" id="animal-color" name="color" placeholder="Digite a cor do animal">
+    
+          <button type="submit">Adicionar</button>
+        </form>
+      </li>
     </ol>
+    
   </section>
 
   <!-- JavaScript -->

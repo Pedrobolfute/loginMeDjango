@@ -25,6 +25,11 @@ animalForm.addEventListener('submit', async (e) => {
   const animalColor = document.querySelector('#animal-color').value;
   const owner = sessionStorage.getItem('owner');
 
+  if (!animalColor) {
+    alert("Cadastro inválido: O campo de cor não pode estar vazio.");
+    return; // Interrompe o envio do formulário
+  }
+
   try {
     const response = await fetch(animalForm.action, {
       method: 'POST',
@@ -41,8 +46,41 @@ animalForm.addEventListener('submit', async (e) => {
 
     const result = await response.json();
     console.log(result);
+
+    // Verifica se o cadastro foi bem-sucedido
+    const animalsList = document.querySelector('.animals');
+    if (response.ok && result.message) {
+      alert("Animal cadastrado com sucesso!");
+      
+      // Adiciona o novo animal na lista dinamicamente
+      const imgBase = animalForm.dataset.imgBase;
+
+      const newAnimal = document.createElement('li');
+      newAnimal.classList.add('animal');
+      newAnimal.innerHTML = `
+        <span class="number">#${result.new_animal_id}</span>
+        <span class="name">${selectedAnimal.charAt(0).toUpperCase() + selectedAnimal.slice(1)}</span>
+        <div class="detail">
+          <ol class="types">
+            ${result.food_list.length > 0 ? result.food_list.map(food => `<li class="type">${food}</li>`).join('') : '<li class="type">Sem alimentos cadastrados</li>'}
+          </ol>
+          <img src="${imgBase}${selectedAnimal}.svg" alt="${selectedAnimal}">
+        </div>
+      `;
+      animalsList.insertBefore(newAnimal, addAnimal);
+
+
+
+      // Resetar os campos do formulário
+      animalForm.reset();
+
+      // Fechar o card após cadastro
+      addAnimal.classList.remove('expanded');
+      animalForm.style.display = 'none';
+    } else {
+      alert("Erro ao cadastrar animal: " + result.error || "Tente novamente.");
+    }
   } catch (err) {
     console.error('Erro ao enviar o formulário:', err);
   }
 });
-

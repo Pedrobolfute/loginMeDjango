@@ -6,6 +6,54 @@
   body{
     background-color: #f6f8fc;
   }
+
+  /* Header geral */
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #49D0B0;
+    color: white;
+    border-radius: 0.5rem;
+    margin: 1rem 1rem 1rem 1rem;
+    
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Lista de contagens de animais */
+.animal-count {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.animal-count ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.animal-count li {
+    background-color: #63e0c8;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+}
   
   .content{
     width: 100vw;
