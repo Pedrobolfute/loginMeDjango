@@ -17,7 +17,7 @@ def loginMe(request):
                 db_user_pass = db_user_name.password_user
                 if str(db_user_name) == str(user_name) and str(db_user_pass) == str(user_pass):
                     
-                    return JsonResponse({'message': f'Bem vindo {user_name}!', 'status':'success'})
+                    return JsonResponse({'message': f'{user_name}', 'status':'success'})
                 # Proxima tela...
                 else:
                     return JsonResponse({"message": "*credenciais inválidas!", "status":"invalid"})

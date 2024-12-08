@@ -13,7 +13,9 @@ document.querySelector('form').addEventListener('submit', async function(e) {
             })
             const data = await response.json()
             if(data.status === 'success'){
+                sessionStorage.setItem('owner', data.message)
                 window.location.href = '/welcome/'
+
             } else if(data.status === 'invalid') {
                 alert(data.message)
                 window.location.href = '/login/'
