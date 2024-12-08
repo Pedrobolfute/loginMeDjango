@@ -18,19 +18,31 @@ document.addEventListener('click', (e) => {
 });
 
 // Lógica para o botão de adicionar animal
-animalForm.addEventListener('submit', (e) => {
-  e.preventDefault(); // Impede o comportamento padrão do formulário
-  
+animalForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
   const selectedAnimal = document.querySelector('#animal-select').value;
   const animalColor = document.querySelector('#animal-color').value;
-  
-  console.log(`Animal: ${selectedAnimal}, Cor: ${animalColor}`);
-  
-  // Fechar o card após enviar o formulário
-  addAnimal.classList.remove('expanded');
-  animalForm.style.display = 'none';
-  
-  // Aqui você pode adicionar lógica para criar um novo card com os dados
+  const owner = sessionStorage.getItem('owner');
+
+  try {
+    const response = await fetch(animalForm.action, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value, // Certifique-se de incluir o CSRF token
+      },
+      body: new URLSearchParams({
+        animal: selectedAnimal,
+        color: animalColor,
+        owner: owner,
+      }),
+    });
+
+    const result = await response.json();
+    console.log(result);
+  } catch (err) {
+    console.error('Erro ao enviar o formulário:', err);
+  }
 });
 
-animalOwner.setAttribute('name', sessionStorage.getItem('owner'))

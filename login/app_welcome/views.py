@@ -6,26 +6,32 @@ from app_create_account.models import User, Animal, AnimalFood
 
 def welcome(request):
     if request.method == "GET":
-        return render(request, 'welcome_screen.html')
-    else:
-        return HttpResponse('Error getting welcome page')
+         # Obter o ID do usuário a partir do sessionStorage (passado pelo frontend)
+        owner_id = request.session.get('user_name')
+        print(owner_id)
+        if owner_id:
+            try:
+                owner = User.objects.get(name_user=owner_id)
+                animals = Animal.objects.filter(owner=owner)  # Filtrar animais do usuário
+                print(animals)
+            except User.DoesNotExist:
+                return JsonResponse({'error': 'Usuário não encontrado.'}, status=404)
+        return render(request, 'welcome_screen.html', {'animals': animals})
     
-# Mapeamento fixo de alimentos
-ANIMAL_FOOD_MAP = {
-    'boi': ['Capim', 'Silagem'],
-    'vaca': ['Capim', 'Ração'],
-    'cavalo': ['Feno', 'Aveia'],
-    'porco': ['Milho', 'Farelo de Soja'],
-    'galinha': ['Milho', 'Farelo de Trigo'],
-    'peixe': ['Alga', 'Larvas'],
-}
-
-def add_animal(request):
-    if request.method == 'POST':
+    elif request.method == "POST":
+        # Mapeamento fixo de alimentos
+        ANIMAL_FOOD_MAP = {
+            'boi': ['Capim', 'Silagem'],
+            'vaca': ['Capim', 'Ração'],
+            'cavalo': ['Feno', 'Aveia'],
+            'porco': ['Milho', 'Farelo de Soja'],
+            'galinha': ['Milho', 'Farelo de Trigo'],
+            'peixe': ['Alga', 'Larvas'],
+        }
         # Receber os dados do front-end
         specie_animal = request.POST.get('animal')
         color_animal = request.POST.get('color')
-        owner_id = request.POST.get('owner_id')  # ID do usuário que será o dono
+        owner_id = request.POST.get('owner')  # ID do usuário que será o dono
 
         # Validar dados obrigatórios
         if not specie_animal or not color_animal or not owner_id:
@@ -33,7 +39,9 @@ def add_animal(request):
 
         try:
             # Obter o usuário
-            owner = User.objects.get(id=owner_id)
+            owner = User.objects.get(name_user=owner_id)
+            owner.save()
+            
 
             # Criar o animal
             animal = Animal.objects.create(
@@ -41,11 +49,13 @@ def add_animal(request):
                 color_animal=color_animal,
                 owner=owner
             )
+            animal.save()
 
-            # Adicionar os alimentos baseados na espécie do animal
+            # Associar alimentos ao animal criado
             food_list = ANIMAL_FOOD_MAP.get(specie_animal.lower(), [])
             for food in food_list:
-                AnimalFood.objects.create(animal=animal, food_name=food)
+                animal_food = AnimalFood(animal=animal, food_name=food)
+                animal_food.save()  # Salvando cada alimento no banco
 
             return JsonResponse({'message': 'Animal e alimentos adicionados com sucesso!'}, status=201)
         except User.DoesNotExist:
@@ -54,3 +64,4 @@ def add_animal(request):
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Método não permitido.'}, status=405)
+    

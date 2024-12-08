@@ -7,28 +7,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Normalize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" 
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!--Normalize css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-  <!--Font roboto-->
+  <!-- Font Roboto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
-  
-  <!--Nosso css-->
-  <link rel="stylesheet" href="{% static 'app_welcome/css/welcome_screen_global.css' %}">
 
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'app_welcome/css/welcome_screen_global.css' %}">
+  <link rel="shortcut icon" href="{% static 'app_welcome/img/svg/fazenda.svg' %}">
 
   <title>Fazenda</title>
 </head>
 <body>
-  
   <section class="content">
     <h1>Animais</h1>
 
     <ol class="animals">
+      <!-- Formulário para adicionar animal -->
       <li class="animal add">
         <span class="number">#000</span>
         <span class="name">Adicionar</span>
@@ -39,10 +39,11 @@
             <li class="type">tipo 2</li>
           </ol>
 
-          <img src="{% static 'app_welcome/img/add.svg' %}" alt="Bullbasaur">
+          <img src="{% static 'app_welcome/img/svg/add.svg' %}" alt="Adicionar Animal">
         </div>
 
-        <form class="animal-form" style="display: none;">
+        <form class="animal-form" action="{% url 'welcome' %}" method="POST" name="login_credentials" style="display: none;">
+          {% csrf_token %}
           <label for="animal-select">Escolha o animal:</label>
           <select id="animal-select" name="animal">
             <option value="boi">Boi</option>
@@ -55,35 +56,40 @@
       
           <label for="animal-color">Cor do animal:</label>
           <input type="text" id="animal-color" name="color" placeholder="Digite a cor do animal">
-          <input type="hidden" id="owner">
       
           <button type="submit">Adicionar</button>
         </form>
-
       </li>
 
-
+      <!-- Iterar sobre os animais no contexto -->
+      {% for animal in animals %}
       <li class="animal">
-        <span class="number">#001</span>
-        <span class="name">Bullbasaur</span>
+        <span class="number">#{{ forloop.counter|default:0 }}</span>
+        <span class="name">{{ animal.specie_animal|capfirst }}</span>
 
         <div class="detail">
           <ol class="types">
-            <li class="type">Capim</li>
-            <li class="type">Ração</li>
+            {% for food in animal.animalfood_set.all %}
+            <li class="type">{{ food.food_name }}</li>
+            {% empty %}
+            <li class="type">Sem alimentos cadastrados</li>
+            {% endfor %}
           </ol>
 
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="Bullbasaur">
+          <!-- Imagem fictícia baseada na espécie do animal -->
+          <img src="{% static 'app_welcome/img/svg/' %}{{ animal.specie_animal }}.svg" 
+          alt="{{ animal.specie_animal|capfirst }}">
         </div>
-      </li>      
+      </li>
+      {% empty %}
+      <li class="animal no-data">
+        <span class="name">Nenhum animal cadastrado</span>
+      </li>
+      {% endfor %}
     </ol>
   </section>
 
-
-
   <!-- JavaScript -->
   <script src="{% static 'app_welcome/js/welcome_screen_component_header-simple.js' %}"></script>
-
-  
 </body>
 </html>

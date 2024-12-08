@@ -44,6 +44,10 @@
     border-radius: 1rem;
     background-color: #49D0B0;
   }
+
+  .animal.add{
+    background-color: #189f73;
+  }
   
   .animal:hover{
     scale: 1.05;
