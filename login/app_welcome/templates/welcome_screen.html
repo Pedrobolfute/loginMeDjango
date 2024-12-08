@@ -69,7 +69,7 @@
 
         <div class="detail">
           <ol class="types">
-            {% for food in animal.animalfood_set.all %}
+            {% for food in animal.foods.all %}
             <li class="type">{{ food.food_name }}</li>
             {% empty %}
             <li class="type">Sem alimentos cadastrados</li>
