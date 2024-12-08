@@ -26,16 +26,18 @@
 <body>
 
   <header class="header">
-    <h1>Bem-vindo à Fazenda</h1>
+    <h1>Bem-vindo à Fazenda {{user.name_user}}</h1>
     <div class="animal-count">
-        <ul>
-            {% for specie, count in species_totals.items %}
-                <li>{{ specie|capfirst }}: {{ count }}</li>
-            {% empty %}
-                <li>Nenhum animal cadastrado</li>
-            {% endfor %}
-        </ul>
-    </div>
+      <ul>
+          {% for specie, count in species_totals.items %}
+              <li data-specie="{{ specie|lower }}" data-count="{{ count }}">
+                  {{ specie|capfirst }}: {{ count }}
+              </li>
+          {% empty %}
+          {% endfor %}
+      </ul>
+  </div>
+    <button class="logout-button" onclick="handleLogout()">Sair</button>
 </header>
 
   <section class="content">
@@ -107,6 +109,9 @@
     </ol>
     
   </section>
+
+  <!-- HTMX-->
+  <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 
   <!-- JavaScript -->
   <script src="{% static 'app_welcome/js/welcome_screen_component_header-simple.js' %}"></script>

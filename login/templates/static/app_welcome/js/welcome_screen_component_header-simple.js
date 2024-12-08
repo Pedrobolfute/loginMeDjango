@@ -51,6 +51,9 @@ animalForm.addEventListener('submit', async (e) => {
     const animalsList = document.querySelector('.animals');
     if (response.ok && result.message) {
       alert("Animal cadastrado com sucesso!");
+
+      updateHeaderCounts(selectedAnimal);
+
       
       // Adiciona o novo animal na lista dinamicamente
       const imgBase = animalForm.dataset.imgBase;
@@ -84,3 +87,33 @@ animalForm.addEventListener('submit', async (e) => {
     console.error('Erro ao enviar o formulário:', err);
   }
 });
+
+function handleLogout() {
+  // Limpa o sessionStorage
+  sessionStorage.clear();
+  // Redireciona para a página de login
+  window.location.href = '/login'; // Atualize para a URL correta do login
+}
+
+// Atualiza a contagem no header
+function updateHeaderCounts(specie) {
+  const specieKey = specie.toLowerCase(); // Normalizar a espécie para evitar inconsistências
+  const headerCounts = document.querySelector('.animal-count ul');
+  const specieItem = headerCounts.querySelector(`li[data-specie="${specieKey}"]`);
+
+  if (specieItem) {
+    // Incrementa a contagem existente
+    const currentCount = parseInt(specieItem.dataset.count, 10) || 0;
+    specieItem.dataset.count = currentCount + 1;
+    specieItem.textContent = `${specie.charAt(0).toUpperCase() + specie.slice(1)}: ${currentCount + 1}`;
+  } else {
+    // Adiciona uma nova linha para a espécie
+    const newSpecieItem = document.createElement('li');
+    newSpecieItem.dataset.specie = specieKey;
+    newSpecieItem.dataset.count = 1;
+    newSpecieItem.textContent = `${specie.charAt(0).toUpperCase() + specie.slice(1)}: 1`;
+    headerCounts.appendChild(newSpecieItem);
+  }
+}
+
+document.querySelector('header h1').innerHTML += `, ${sessionStorage.getItem('owner')}!`
