@@ -20,9 +20,9 @@
         </header>
 
         <main>
-            <div class="login_area">
-                <div class="login_title">Change</div>
-                <div class="login">
+            <div class="password_change_area">
+                <div class="change_title">Change</div>
+                <div class="change">
                     <form action="{% url 'changeMe' %}" name="login_credentials" method="POST">{% csrf_token %}
                         <span class="name">
                             <input type="text" placeholder="Nome" name="user_name">

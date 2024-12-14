@@ -5,6 +5,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     const value = clickButton.value
 
     if (value == 'Enviar'){
+        console.log('aki')
         const formData = new FormData(this)
         try{
             const response = await fetch('/login/', {

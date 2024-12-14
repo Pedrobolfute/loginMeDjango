@@ -3,15 +3,16 @@
     margin: 0 auto;
     box-sizing: border-box;
 
-    color: #3D3D3D; /* Cinza escuro */
+    color: #333333; /* Cinza neutro mais legível */
     font-family: "Cinzel", system-ui;
     font-optical-sizing: auto;
     font-weight: normal;
     font-style: normal;
+    transition: all 0.3s ease-in-out; /* Transição padrão para suavizar interações */
 }
 
 body {
-    background-color: #FFF9E5; /* Amarelo claro */
+    background-color: #F3F4F6; /* Cinza muito claro para conforto visual */
     height: 100vh;
     max-height: 100vh;
     width: 100vw;
@@ -26,9 +27,10 @@ body {
 /* Header */
 header {
     height: 20%;
-    background-color: #FFCC00; /* Amarelo ouro */
+    background-color: #4CAF50; /* Verde moderno */
     display: flex;
     align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
 }
 
 header .title {
@@ -49,118 +51,106 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 
-.login_area {
+.password_change_area {
     max-width: 60%;
     max-height: 60%;
-    height: 500px;
-    width: 500px;
-
-    border: #FFCC99 solid; /* Laranja claro */
-    overflow-x: auto;
+    height: 450px;
+    width: 400px;
+    border: 2px solid #D1D5DB; /* Cinza claro elegante */
+    border-radius: 8px; /* Cantos arredondados modernos */
+    overflow-y: auto;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
-.login_area .login_title {
-    color: #3D3D3D; /* Cinza escuro */
+.password_change_area .change_title {
+    color: #333333; /* Cinza neutro mais escuro */
     font-weight: 900;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.login_area .login {
+.password_change_area .change {
     max-width: 100%;
     max-height: 100%;
 }
 
-.login_area .login form {
+.password_change_area .change form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
 }
 
-.login_area .login form span {
-    display: flex;
-    justify-content: center;
-}
-
-.login_area input[type=text] {
-    margin-top: 0.25rem;
+.password_change_area input[type=text],
+.password_change_area input[type=password] {
+    margin-top: 0.5rem;
     width: 95%;
-    height: 35px;
-    background-color: #FFF4D9; /* Amarelo pastel */
-    color: #3D3D3D; /* Cinza escuro */
-    font-weight: 900;
-    border: 1px solid #FFCC99; /* Laranja claro */
+    height: 40px;
+    background-color: #E5E7EB; /* Cinza claro para campos de texto */
+    color: #333333; /* Cinza escuro */
+    font-weight: 500;
+    border: 1px solid #D1D5DB; /* Cinza claro */
+    border-radius: 6px;
+    padding: 0 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-.login_area input[type="submit"] {
+.password_change_area input[type=text]:focus,
+.password_change_area input[type=password]:focus {
+    outline: none;
+    box-shadow: 0 0 4px 2px #4CAF50; /* Destaque verde no foco */
+}
+
+.password_change_area input[type="submit"] {
     margin-top: 1rem;
     color: white;
-    height: 35px;
+    height: 45px;
     width: 100%;
     border: none;
-    background-color: #FF9900; /* Laranja */
+    background-color: #4CAF50; /* Verde moderno */
     font-weight: bold;
     font-size: 1rem;
-    transition: all 0.3s ease-in-out;
+    border-radius: 6px;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-.login_area input[type="submit"]:hover {
-    background-color: #FFD633; /* Amarelo forte */
+.password_change_area input[type="submit"]:hover {
+    background-color: #45A049; /* Verde mais escuro */
     transform: scale(1.05); /* Aumenta o botão */
 }
 
 /* Footer */
 footer {
-    background-color: #FFCC00; /* Amarelo ouro */
+    background-color: #4CAF50; /* Verde moderno atualizado */
     height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.author a {
+author a {
     color: white;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Georgia', serif;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
 }
 
-@media screen and (min-width: 425px) {
-    header .title p {
-        font-size: 2rem;
-    }
-
-    .login_area .login_title {
-        font-size: 1.5rem;
-    }
-
-    .login_area .login form input[type="text"] {
-        margin-top: 1rem;
-        width: 100%;
-    }
-}
-
-@media screen and (min-height: 720px) {
-    header .title p {
-        font-size: 2rem;
-        text-align: center;
-    }
-
-    .login_area .login_title {
-        font-size: 1.75rem;
-    }
-
-    .login_area .login form input[type="text"] {
-        margin-top: 1.5rem;
-        width: 100%;
-    }
+author a:hover {
+    color: #A5D6A7; /* Verde mais claro no hover */
 }
