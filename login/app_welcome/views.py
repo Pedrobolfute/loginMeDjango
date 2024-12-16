@@ -9,6 +9,9 @@ def welcome(request):
     if request.method == "GET":
          # Obter o ID do usuário a partir do sessionStorage (passado pelo frontend)
         owner_id = request.session.get('user_name')
+        user_name = request.GET.get('owner')
+        if owner_id == None:
+            owner_id = user_name
         animals = []  # Inicializar variável para evitar erro se `owner_id` não for encontrado
         species_totals = {}  # Inicializar o dicionário
         if owner_id:
