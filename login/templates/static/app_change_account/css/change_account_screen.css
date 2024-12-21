@@ -114,6 +114,7 @@ main {
 
 .password_change_area input[type="submit"] {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     color: white;
     height: 45px;
     width: 100%;
