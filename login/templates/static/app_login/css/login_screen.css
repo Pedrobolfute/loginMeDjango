@@ -93,7 +93,8 @@ main {
     justify-content: center;
 }
 
-.login_area input[type=text] {
+.login_area input[type=text],
+.login_area input[type=password] {
     margin-top: 0.25rem;
     width: 95%;
     height: 35px;
@@ -107,7 +108,8 @@ main {
     transition: box-shadow 0.2s ease-in-out;
 }
 
-.login_area input[type=text]:focus {
+.login_area input[type=text]:focus,
+.login_area input[type=password]:focus {
     outline: none;
     box-shadow: 0 0 4px 2px #4CAF50; /* Destaque verde no foco */
 }
