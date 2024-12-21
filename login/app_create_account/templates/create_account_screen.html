@@ -22,19 +22,19 @@
         </header>
 
         <main>
-            <div class="login_area">
-                <div class="login_title">Register</div>
-                <div class="login">
+            <div class="registration_area">
+                <div class="registration_title">Register</div>
+                <div class="registration">
                     <form class="register_form" action="{% url 'register' %}" name="login_credentials" method="POST">{% csrf_token %}
                         <div class="credential_info">
                             <span class="name">
                                 <input type="text" placeholder="Nome" name="user_name">
                             </span>
                             <span class="password">
-                                <input type="text" placeholder="Senha" name="user_pass">
+                                <input type="password" placeholder="Senha" name="user_pass">
                             </span>
                             <span class="confirm_password">
-                                <input type="text" placeholder="Confirmar Senha" name="user_confirm_pass">
+                                <input type="password" placeholder="Confirmar Senha" name="user_confirm_pass">
                             </span>
                         </div>
                             
