@@ -1,18 +1,6 @@
 const addAnimal = document.querySelector('.animal.add');
 const animalForm = addAnimal.querySelector('.animal-form');
 const animalOwner = document.querySelector('#owner')
-const globalOwner = sessionStorage.getItem('owner')
-// console.log(globalOwner)
-
-fetch(`/welcome/?owner=${encodeURIComponent(globalOwner)}`, {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  }
-})
-  .then(response => console.log(response.url))
-  // .then(data => console.log(data))
-  // .catch(err => console.error(err))
 
 // Expande o card e exibe o formulário ao clicar no card
 addAnimal.addEventListener('click', (e) => {
@@ -37,16 +25,6 @@ animalForm.addEventListener('submit', async (e) => {
   const animalColor = document.querySelector('#animal-color').value;
   const owner = sessionStorage.getItem('owner');
 
-  fetch(`/welcome/?owner=${encodeURIComponent(owner)}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err))
-
   if (!animalColor) {
     alert("Cadastro inválido: O campo de cor não pode estar vazio.");
     return; // Interrompe o envio do formulário
@@ -66,6 +44,8 @@ animalForm.addEventListener('submit', async (e) => {
       }),
     });
 
+    const result = await response.json();
+    console.log(result);
 
     // Verifica se o cadastro foi bem-sucedido
     const animalsList = document.querySelector('.animals');
@@ -137,4 +117,3 @@ function updateHeaderCounts(specie) {
 }
 
 document.querySelector('header h1').innerHTML += `, ${sessionStorage.getItem('owner')}!`
-
