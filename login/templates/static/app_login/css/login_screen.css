@@ -110,6 +110,7 @@ main {
 
 .login_area input[type=text]:focus,
 .login_area input[type=password]:focus {
+
     outline: none;
     box-shadow: 0 0 4px 2px #4CAF50; /* Destaque verde no foco */
 }
