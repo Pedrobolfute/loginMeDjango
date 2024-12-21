@@ -20,18 +20,18 @@
         </header>
 
         <main>
-            <div class="login_area">
-                <div class="login_title">Change</div>
-                <div class="login">
+            <div class="password_change_area">
+                <div class="change_title">Change</div>
+                <div class="change">
                     <form action="{% url 'changeMe' %}" name="login_credentials" method="POST">{% csrf_token %}
                         <span class="name">
                             <input type="text" placeholder="Nome" name="user_name">
                         </span>
                         <span class="password">
-                            <input type="text" placeholder="Senha Atual" name="user_pass">
+                            <input type="password" placeholder="Senha Atual" name="user_pass">
                         </span>
                         <span class="confirm_password">
-                            <input type="text" placeholder="Nova Senha" name="user_new_pass">
+                            <input type="password" placeholder="Nova Senha" name="user_new_pass">
                         </span>
                         <span class="submit">
                             <input type="submit" name="Enviar">
